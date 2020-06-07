@@ -45,6 +45,7 @@ export default {
     },
     methods:{
       async registeSubmit(){
+        // 正则校验
         let rulg = /^.{6,16}$/
             if(rulg.test(this.model.name) && rulg.test(this.model.username)&& rulg.test(this.model.password)){
                 const res =  await this.$http.post('/register',this.model)
