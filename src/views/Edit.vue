@@ -71,12 +71,15 @@
           },
          // 上传图像
          async afterRead(file) {
-             const fromdata = new FormData()
-             fromdata.append('file',file.file)
-             const res =  await this.$http.post('/upload',fromdata)
-             this.model.user_img = res.data.url
-             this.UserUpdate()
-             // this.$refs.navbar.NavInit()
+            const fromdata = new FormData()
+            fromdata.append('file',file.file)
+            const res =  await this.$http.post('/upload',fromdata)
+            this.model.user_img = res.data.url
+            this.UserUpdate()
+            // 自动刷新当前页面
+            setTimeout(()=>{
+                location.reload()
+            },1000)
          },
          async UserUpdate() {
              const res = await this.$http.post('/update/' + localStorage.getItem('id'),this.model)

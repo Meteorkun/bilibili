@@ -10,8 +10,8 @@
       </p>
     </div>
     <div>
-      <img :src="imgUrl" alt="" @click="$router.push('/userinfo')" v-if="imgUrl">
-      <img src="@/assets/default_img.jpg" alt="" @click="$router.push('/login')" v-else>
+      <img :src="imgUrl" alt="" v-if="imgUrl" @click="to">
+      <img src="@/assets/default_img.jpg" alt="" v-else @click="$router.push('/login')">
       <p>下载App</p>
     </div>
   </div>
@@ -30,11 +30,14 @@ export default {
         this.imgUrl = res.data[0].user_img
       }
     },
-    components:{
-
-    },
     methods:{
-
+      to(){
+        if(this.$route.path != '/userinfo'){
+          this.$router.push('/userinfo')
+        }else{
+          return
+        }
+      }
     }
 }
 </script>
